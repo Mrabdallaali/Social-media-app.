@@ -22,6 +22,22 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+interface blah {
+  id: string;
+  director: string;
+  title: string;
+  tagLine: string;
+  imageLink: string;
+  audioLink: string;
+  rating: string;
+  releaseYear: string;
+  type: string;
+  subscriptionRequired: boolean;
+  summary: string;
+  tags: string[];
+  movieDescription: string;
+}
+
 interface PostInputProps {
   insideModal?: boolean;
 }
@@ -35,11 +51,10 @@ export default function PostInput({ insideModal }: PostInputProps) {
   const dispatch = useDispatch();
 
   async function sendPost() {
-   
-     if(!user.username){
-      dispatch(openLogInModal())
+    if (!user.username) {
+      dispatch(openLogInModal());
       return;
-     }
+    }
 
     await addDoc(collection(db, "posts"), {
       text: text,
